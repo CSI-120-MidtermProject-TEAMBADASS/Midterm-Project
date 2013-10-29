@@ -1,0 +1,51 @@
+Feature: Request geolocated tweets of mobile user to web application using their submitted filters and preferences. Filters include at least two hash tags, date range of tweets, mile radius
+from user, and highest/lowest sentiment scoring tweets of the 100 results returned by the twitter API.
+
+    Scenario Outline:
+        Given some <hastag> from tweet
+        When <date> of use
+        Then return filters <mileRadius>
+        And filter <sentiment>        
+        
+        Examples:
+        | hashtag | date | mileRadius | sentiment |
+        |     #'s    |  -/-   |    #miles     |    score     |
+
+Feature: When the results are returned for a search page, the details of the tweet/user should be displayed to the user. The following information is required: @username, avatar, datetime
+of tweet, text contents of tweet, sentiment score, hashtags included in the tweet.
+
+    Scenario Outline:
+        Given <username>
+        And <avatar>
+        When <timestamp> the results are returned for a searchpage
+        Then the details should be displayed to the user <tweetContents>
+        And <sentiment>
+        And <hashtags>
+        
+        Examples:
+        | username | avatar | timestamp | tweetContents | sentiment | hashtags |
+        |    @user   |   \O/   |     15:30     |  blahBlahBlah |    score    |      #'s      |
+
+Feature: The home page for the application will highlight the last three sets of hashtags searched by the current user as well as the top 10 global searches across all users of the application.
+
+    Scenario Outline:
+        Given the homepage
+        And <username> the current user    
+        When Always
+        Then <lastThree#'s> will highlight the last three sets of hashtags
+        And <appsGlobalTop10> global searches
+        
+        Examples:
+        | username |         lastThree#'s      |     appsGlobalTop10    |
+        |   @user   | #yo, #sup, #killaSwag | puppies, kittens, etc...|
+        
+Feature: Your team will then pull in a different web service API via HTTP requests or an additional node.js module to access the remote api and data. This will enhance and differentiate your application from the others in how you choose to mash up the data.
+
+    Scenario Outline:
+        Given the city the tweet is from <location>
+        When Anytime
+        Then compare with other cities <otherCity>
+
+        Examples:
+        | location | otherCity | 
+        | Burlington,VT | Boston,MA |
